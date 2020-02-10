@@ -1,0 +1,64 @@
+---
+type: oral   #oral, poster, table
+language: spanish
+title: "#TuitómetroNacional"
+topics: [1, 6,10]
+# Para la lista de tópicos usá latinr::latinr_topics()
+authors:
+  - first_name: Juan Pablo
+    last_name: Ruiz Nicolini
+    email: juan.ruiznicolini@mail.utdt.edu
+    country: ar  # lista en latinr::latinr_countries()
+    affiliation: ["Universidad Torcuato Di Tella","menta Comunicación" ]
+    url: "tuqmano.github.io"  # Optional 
+    corresponding: true
+  - first_name: Camila 
+    last_name: Higa
+    email: lncs@springer.com
+    country: ar
+    affiliation: ["menta Comunicación"]
+    corresponding: false
+speaker: 1  # sólo un autor puede estar como speaker
+keywords: 
+  - "redes sociales"
+  - "rtweet"
+  - "shiny"
+bibliography: latinr_bibliography.bib
+biblio-style: apalike-es   
+output: 
+    latinr::latinr_article:
+      keep_tex: false
+params: 
+  check_is_error: FALSE
+  submission: FALSE
+---
+
+
+```{r submission-checks, echo=FALSE, warning=TRUE}
+# Runs some basic checks in metadata. To disable, set check_is_error to FALSE
+latinr::latinr_checks(rmarkdown::metadata, params$check_is_error)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Abstract 
+
+Creamos una aplicación `shiny` que nos permite analizar de manera agregada el comportamiento de políticos y sus públicos en *Twitter*. Los indicadores y visulaizaciones nos permiten monitorear la actividad y relación de legisladores/as nacionales, gobernadores/as provinciales y miembros del gabinete nacional en Twitter. La herramienta se divide en tres secciones:
+
+**Métricas**
+• Al seleccionar `categoría` $+$ `nombre` se obtienen métricas individuales: mejores publicaciones, ranking de usuarios mencionados y hashtags de de cada usuaria/o.
+
+**Ratio**
+• Al seleccionar `mostrar todo` se visualiza un gráfico ternario interactivo. Cada punto representa a una cuenta (oficialismo y oposición). A través de la botonera *PONDERADORES* es posible visualizar los puntos en función del nivel de actividad (*cantidad de publicaciones*) y del nivel de rendimiento (*promedio de interacciones*). Para obtener más información se posicionar el mouse sobre cada punto.
+• Al seleccionar `filtrar` se visualizan dos gráficos comparativos divididos por género. En cada gráfico es posible visualizar espacios políticos distinguiendo entre *oficialismo* y *oposición*.
+• En la sección *Publicaciones en el tiempo* se visualizan los tuits de cada día con su respectivo ratio. Se puede filtrar por palabras, por espacio y por fecha de la muestra. Al *clickear* los puntos se accede a la publicación original.
+
+
+**Usuarios en Red**
+• Al seleccionar un usuario se visualiza la red que refleja la relación seguidos/seguidores entre miembros de la misma categoría (al 9 de diciembre de 2019, día previo al inicio de una nueva gestión de gobierno en Argentina).
+• Cada círculo corresponde a la cuenta de un usuario/a (nodo) y las flechas marcan la dirección de quién sigue a quién.
+• Los colores de los usuarios/as (nodos circulares) son asignados luego de haber agrupado cada una de las cuentas con un método de *clusterización random walk* en base a cómo se relacionan entre ellas dado a quien sigue cada una. Los colores de las flechas (aristas) heredan el color de los seguidores en su vínculo con los seguidos. Cuando un par de cuentas se sigue reciprocamente el color refleja una combinación de los otros dos.
