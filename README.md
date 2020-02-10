@@ -23,4 +23,8 @@ e. métricas de twitter básicas.
 
 Una composición de imganes (patchwork?) de network + ternario? 
 
+### 3 Template + submit
+
+El artículo lo empecé con el paquete `latinr`que proveé el template. Pero también el método para hacer el *submit* anonomizado cuando corresponda al gestor de contenidos. Tener en cuenta para cuando haya que avanzar con ese proceso. 
+
  
