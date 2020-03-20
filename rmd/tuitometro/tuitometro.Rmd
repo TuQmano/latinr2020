@@ -1,7 +1,7 @@
 ---
 type: oral   #oral, poster, table
 language: spanish
-title: "#TuitómetroNacional"
+title: "PolAr: una monitor de la conversación política en Argentina"
 topics: [1, 6,10]
 # Para la lista de tópicos usá latinr::latinr_topics()
 authors:
@@ -9,7 +9,7 @@ authors:
     last_name: Ruiz Nicolini
     email: juan.ruiznicolini@mail.utdt.edu
     country: ar  # lista en latinr::latinr_countries()
-    affiliation: ["Universidad Torcuato Di Tella","menta Comunicación" ]
+    affiliation: ["Universidad Torcuato Di Tella"]
     url: "tuqmano.github.io"  # Optional 
     corresponding: true
   - first_name: Camila 
@@ -18,11 +18,13 @@ authors:
     country: ar
     affiliation: ["menta Comunicación"]
     corresponding: false
-speaker: 1  # sólo un autor puede estar como speaker
+presenter: 1  # sólo un autor puede estar como speaker
 keywords: 
   - "redes sociales"
   - "rtweet"
   - "shiny"
+  - "twitter"
+  - "política"
 bibliography: latinr_bibliography.bib
 biblio-style: apalike-es   
 output: 
@@ -47,18 +49,51 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Abstract 
 
-Creamos una aplicación `shiny` que nos permite analizar de manera agregada el comportamiento de políticos y sus públicos en *Twitter*. Los indicadores y visulaizaciones nos permiten monitorear la actividad y relación de legisladores/as nacionales, gobernadores/as provinciales y miembros del gabinete nacional en Twitter. La herramienta se divide en tres secciones:
+*Twitter* es la plataforma preferida para el análisis de datos políticos en redes. Hay por lo menos dos razones que lo explican: *(a)* es allí donde la mayoría de los dirigentes políticos se expresan (y, por ende, donde el público que consume información política interactúa); y *(b)* es la red que disponibiliza libremente grandes volúmenes de información. 
 
-**Métricas**
-• Al seleccionar `categoría` $+$ `nombre` se obtienen métricas individuales: mejores publicaciones, ranking de usuarios mencionados y hashtags de de cada usuaria/o.
+En la actualidad podemos encontrar varias librerías de distintos lengüajes que facilitan la recopilación de estos datos. Para fines de investigación encontramos dos que pueden ser ejecutadas desde *R* que se destacan sobre el resto. Una primera opción es trabajar con `twint`[^1] (programa escrito en *python* que puede correr en *R* a través de \CRANpkg{reticulate}). Una segunda alternativa, plenamente integrada con la API de la plataforma de *microbloging* es \CRANpkg{rtweet} [@rtweet-package].  
 
-**Ratio**
-• Al seleccionar `mostrar todo` se visualiza un gráfico ternario interactivo. Cada punto representa a una cuenta (oficialismo y oposición). A través de la botonera *PONDERADORES* es posible visualizar los puntos en función del nivel de actividad (*cantidad de publicaciones*) y del nivel de rendimiento (*promedio de interacciones*). Para obtener más información se posicionar el mouse sobre cada punto.
-• Al seleccionar `filtrar` se visualizan dos gráficos comparativos divididos por género. En cada gráfico es posible visualizar espacios políticos distinguiendo entre *oficialismo* y *oposición*.
-• En la sección *Publicaciones en el tiempo* se visualizan los tuits de cada día con su respectivo ratio. Se puede filtrar por palabras, por espacio y por fecha de la muestra. Al *clickear* los puntos se accede a la publicación original.
+Partiendo de esto desarrollamos una aplicación \CRANpkg{shiny} que nos permite analizar de manera agregada a través de detemrinados indicadores y visulaizaciones las cuentas de las personas que integran el ecosistema político e institucional de Argentina: monitorear la actividad de las cuentas, cómo interactúa el público con la información que publican y las relaciones entre legisladores/as nacionales, gobernadores/as provinciales y miembros del gabinete nacional en Twitter.
 
 
-**Usuarios en Red**
-• Al seleccionar un usuario se visualiza la red que refleja la relación seguidos/seguidores entre miembros de la misma categoría (al 9 de diciembre de 2019, día previo al inicio de una nueva gestión de gobierno en Argentina).
-• Cada círculo corresponde a la cuenta de un usuario/a (nodo) y las flechas marcan la dirección de quién sigue a quién.
-• Los colores de los usuarios/as (nodos circulares) son asignados luego de haber agrupado cada una de las cuentas con un método de *clusterización random walk* en base a cómo se relacionan entre ellas dado a quien sigue cada una. Los colores de las flechas (aristas) heredan el color de los seguidores en su vínculo con los seguidos. Cuando un par de cuentas se sigue reciprocamente el color refleja una combinación de los otros dos.
+## *#TuitómetroNacional*
+
+
+La herramienta se divide en tres secciones: \vspace{.5cm}
+
+**1.Métricas**: Esta apartado nos permite explroar la conversación desde el lado de la oferta y evaluar qué y cómo publican contenido las cuentas seleccionadas. Al seleccionar `categoría` $+$ `nombre` se obtienen métricas individuales de cada uno: mejores publicaciones (considerando frecuencia de *likes* y *RT* de cada publicación) y ranking de usuarios mencionados y hashtags utilizados[^2].
+
+\vspace{.5cm}
+
+**2.Ratio**: cuantifica la relación entre las distintas reacciones posibles ante un tuit (*RT*, *Me Gusta*, *Fav*) partiendo de la hipótesis que a mayor cantidad de respuestas en relación a las otras interacciones, el mensaje tuvo peor recepción en el público[^3]. El foco de esta información está puesto en cómo interactúa el público con la información. 
+Al seleccionar `mostrar todo` se visualiza un gráfico ternario. Cada punto representa a una cuenta (oficialismo y oposición). A través de la botonera *PONDERADORES* es posible visualizar los puntos en función del nivel de actividad (*cantidad de publicaciones*) y del nivel de rendimiento (*promedio de interacciones*). Para obtener más información se posicionar el mouse sobre cada punto. Se puede además `filtrar` la información y visualizar dos gráficos comparativos divididos por género de los usuarios. En cada uno de ellos se distinguen además los distinots espacios políticos (*oficialismo* y *oposición*) según el color. En la sección *Publicaciones en el tiempo* se visualizan estos msimos *tuits* por día de emisión con su respectivo ratio. Adicionalmente se puede filtrar por palabras, por espacio y por fecha de la muestra. Finalmente, al *clickear* los puntos se accede a la publicación original.
+
+\vspace{.5cm}
+
+**3.Usuarios en Red**
+
+Ernesto Calvo y Andrés Malamud -@calvo_cafecito_2014 sostienen que *"los motivos para “seguir” o “ser seguido” por un político son variados, y van desde la afinidad partidaria, cultural o territorial hasta el espionaje, pasando por el consumo irónico. Sin embargo, la intuición sugiere que la afinidad prevalece y la evidencia lo confirma: los políticos siguen a más “amigos” que a rivales. Como la decisión de a quién seguir es pública, con ella envían señales de pertenencia y de reciprocidad tanto a los votantes como a sus potenciales aliados"*.
+
+
+Partiendo de la idea precedente identificamos la totalidad de las cuentas *seguidas* por nuestros usuarios y reconstruímos con grafos estos vínculos. 
+
+* Al seleccionar un usuario se visualiza la red que refleja la relación seguidos/seguidores entre miembros de una misma categoría (al 9 de diciembre de 2019, día previo al inicio de una nueva gestión de gobierno en Argentina).
+
+\vspace{.1cm}
+* Cada *nodo* (círculo) corresponde a la cuenta de un usuario/a y las *artistas* (flechas) marcan la dirección de quién sigue a quién.
+
+\vspace{.1cm}
+* Los colores de los *nodos* son asignados luego de haber agrupado cada una de las cuentas con un método de *clusterización random walk* en base a cómo correlacionaban entre sí en función de las listas de *seguidos* antes obtenida. Los colores de las *aristas* heredan el color de los *seguidores* en su vínculo con los *seguidos*. Cuando un par de cuentas se sigue reciprocamente el color refleja una combinación de los otros dos.
+
+
+[^1]: *Twint* es un proyecto de *Python* que va más allá de los límites establecidos por la API de Twitter [https://github.com/twintproject](https://github.com/twintproject)
+
+
+[^2]: Esta sección está basada en el desarrollo de Garrik Aden-Buie [https://github.com/gadenbuie/tweets-of-2019](https://github.com/gadenbuie/tweets-of-2019)
+
+[^3]: Este apartado está inspirado en el trabajo de Roeder y otros [-@oliver_roeder_worst_2017] sobre el comportamiento de los usuarios con las publicaciones de políticos de EE.UU. en *FiveThirtyEight* y el posterior análisis sobre el caso argentino de Galup y Pilorget [-@pilorget_grieta_2018]. 
+
+## *Shiny* App
+[http://tuitometro.mentacomunicacion.com.ar/](http://tuitometro.mentacomunicacion.com.ar/)
+
+## Referencias
