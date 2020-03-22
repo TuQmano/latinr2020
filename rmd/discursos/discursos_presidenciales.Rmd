@@ -47,51 +47,45 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Abstract 
 
-*Twitter* es la plataforma preferida para el análisis de datos políticos en redes. Hay por lo menos dos razones que lo explican: *(a)* es allí donde la mayoría de los dirigentes políticos se expresan (y, por ende, donde el público que consume información política interactúa); y *(b)* es la red que disponibiliza libremente grandes volúmenes de información. 
+El primero de marzo de cada año  las cámaras de Diputados y Senadores de la Nación Argentina se reúnen en asamblea para dar comienzo al año legislativo. Cada año el presidente de turno encabeza  dicho acto con un discurso[^1]. Estos suelen girar en torno a los ejes de gobierno o promesas y objetivos del año. Es notorio que estos mensajes tiene un estilo y contenido marcado por quien ejerce el gobierno. En este trabajo partimos de una gran cantidad de texto contenido en cada uno de los discursos presidenciales desde el retorno de la democracia en 1983 para poder encontrar tanto patrones comúnes como diferencias entre los primeros mandatarios y entre ellos mismos a lo largo del tiempo.
 
-En la actualidad podemos encontrar varias librerías de distintos lengüajes que facilitan la recopilación de estos datos. Para fines de investigación encontramos dos que pueden ser ejecutadas desde *R* que se destacan sobre el resto. Una primera opción es trabajar con `twint`[^1] (programa escrito en *python* que puede correr en *R* a través de \CRANpkg{reticulate}). Una segunda alternativa, plenamente integrada con la API de la plataforma de *microbloging* es \CRANpkg{rtweet} [@rtweet-package].  
-
-Partiendo de esto desarrollamos una aplicación \CRANpkg{shiny} que nos permite analizar de manera agregada a través de detemrinados indicadores y visulaizaciones las cuentas de las personas que integran el ecosistema político e institucional de Argentina: monitorear la actividad de las cuentas, cómo interactúa el público con la información que publican y las relaciones entre legisladores/as nacionales, gobernadores/as provinciales y miembros del gabinete nacional en Twitter.
+[^1]: La fuente original de todos los discursos puede consultarse en línea en [https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html](https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html)
 
 
-## *#TuitómetroNacional*
+Hacer uso de la *minería de texto* de los discursos de los presidentes como estrategia de investigación es de utilidad para un rápido y eficiente análisis exploratorio del gran volúmen de información contenida en los mismos. Dentro del ecosistema de `R` este campo ha ido creciendo sostenidamente. Liberias como \CRANpkg{tm} y \CRANpkg{topicmodels} son herramietnas poderosas para el procesamiento, manipulación y modelado de la información contenida en el texto. Siguiendo la filosofía de \CRANpkg{tidyverse}  Sigle y Robinson [-@Silge2016] desarrollaron \CRANpkg{tidytext}, que hace mucho más facil una primera introducción a esta técnica de investigación y su integración con otras como \CRANpkg{ggplot2} para la visualización. 
+
+Un flujo de trabajo como el descripto más arriba puede ilustrarse siguiendo el esquema propuesto por Silge y Robinson [-@silge_text_2020]:
+
+```{r diagrama, echo=FALSE, fig.align='center', out.width="80%"}
+knitr::include_graphics("../../img/diagrama.png")
+```
+
+1. Descargamos los archivos con el texto de $37$ discursos emitidos por $8$ presidentes. Desde el primero de Alfonsín en la transición a la democracia (1984) hasta el último con el que Alberto Fernández dio inicio a las sesiones legislativas (2020). Entre todos suman alrededor de $365_{mil}$ palabras con un promedio de $9880$ y picos mínimo de $2846$ (Carlos Menem en 1996) y máximo de $26.189$ (Cristina Fernández de Kirchner en $2013$). 
+
+2. Con esa información construimos una única base de datos siguiendo el principo *datos de texto ordenados* (*tidy text*) propuesto por Sigle y Robinson [-@Silge2016] como extensión de los *datos ordenados* (*tidy*) de Wickham [-@JSSv059i10]: 
+
+ * Cada variable debe tener su propia columna.
+ * Cada observación debe tener su propia fila.
+ * Cada valor debe tener su propia celda.
+
+Sigle y Robinson [-@Silge2016] definen entonces que los *datos de texto ordenados* cuando la tabla de datos está compuesta por "un *token* por fila". *Un token es una unidad de texto significativa, como una palabra* (o un *bigrama*)*, que estamos interesados en usar para el análisis, y la tokenización es el proceso de dividir el texto en tokens*[^2]. 
+
+[^2]: Traducción propia de *The tidy text format* [@Silge2016].
+
+3. Trabajamos con \CRANpkg{dplyr} para calcular frecuencias de palabras y \CRANpkg{tidytext} para calcular palabras de mayor importancia comparada entre discursos (*tf_idf*). Por último \CRANpkg{ggplot2} (y extensiones como \CRANpkg{patchwork} y \CRANpkg{ggforce}) para las visualizaciones. 
+
+### Ejemplo: primeros discursos presidenciales
+
+Inspirados en un trabajo del equipo de datos de la Universidad de Berkeley (California)[^3] calculamos la frecuencia con la que los presidentes utilizaron determinadas palabras relacionadas con un tópico específio, en este caso etiquetadas como *Política*.  
+
+[^3]: *The Language of Data: Analyzing the State of the Union* [-@berkeley].
+
+```{r parrallel_discursos, echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("../../img/parallel_dot2.png")
+```
 
 
-La herramienta se divide en tres secciones: \vspace{.5cm}
-
-**1.Métricas**: Esta apartado nos permite explroar la conversación desde el lado de la oferta y evaluar qué y cómo publican contenido las cuentas seleccionadas. Al seleccionar `categoría` $+$ `nombre` se obtienen métricas individuales de cada uno: mejores publicaciones (considerando frecuencia de *likes* y *RT* de cada publicación) y ranking de usuarios mencionados y hashtags utilizados[^2].
-
-\vspace{.5cm}
-
-**2.Ratio**: cuantifica la relación entre las distintas reacciones posibles ante un tuit (*RT*, *Me Gusta*, *Fav*) partiendo de la hipótesis que a mayor cantidad de respuestas en relación a las otras interacciones, el mensaje tuvo peor recepción en el público[^3]. El foco de esta información está puesto en cómo interactúa el público con la información. 
-Al seleccionar `mostrar todo` se visualiza un gráfico ternario. Cada punto representa a una cuenta (oficialismo y oposición). A través de la botonera *PONDERADORES* es posible visualizar los puntos en función del nivel de actividad (*cantidad de publicaciones*) y del nivel de rendimiento (*promedio de interacciones*). Para obtener más información se posicionar el mouse sobre cada punto. Se puede además `filtrar` la información y visualizar dos gráficos comparativos divididos por género de los usuarios. En cada uno de ellos se distinguen además los distinots espacios políticos (*oficialismo* y *oposición*) según el color. En la sección *Publicaciones en el tiempo* se visualizan estos msimos *tuits* por día de emisión con su respectivo ratio. Adicionalmente se puede filtrar por palabras, por espacio y por fecha de la muestra. Finalmente, al *clickear* los puntos se accede a la publicación original.
-
-\vspace{.5cm}
-
-**3.Usuarios en Red**
-
-Ernesto Calvo y Andrés Malamud -@calvo_cafecito_2014 sostienen que *"los motivos para “seguir” o “ser seguido” por un político son variados, y van desde la afinidad partidaria, cultural o territorial hasta el espionaje, pasando por el consumo irónico. Sin embargo, la intuición sugiere que la afinidad prevalece y la evidencia lo confirma: los políticos siguen a más “amigos” que a rivales. Como la decisión de a quién seguir es pública, con ella envían señales de pertenencia y de reciprocidad tanto a los votantes como a sus potenciales aliados"*.
-
-
-Partiendo de la idea precedente identificamos la totalidad de las cuentas *seguidas* por nuestros usuarios y reconstruímos con grafos estos vínculos. 
-
-* Al seleccionar un usuario se visualiza la red que refleja la relación seguidos/seguidores entre miembros de una misma categoría (al 9 de diciembre de 2019, día previo al inicio de una nueva gestión de gobierno en Argentina).
-
-\vspace{.1cm}
-* Cada *nodo* (círculo) corresponde a la cuenta de un usuario/a y las *artistas* (flechas) marcan la dirección de quién sigue a quién.
-
-\vspace{.1cm}
-* Los colores de los *nodos* son asignados luego de haber agrupado cada una de las cuentas con un método de *clusterización random walk* en base a cómo correlacionaban entre sí en función de las listas de *seguidos* antes obtenida. Los colores de las *aristas* heredan el color de los *seguidores* en su vínculo con los *seguidos*. Cuando un par de cuentas se sigue reciprocamente el color refleja una combinación de los otros dos.
-
-
-[^1]: *Twint* es un proyecto de *Python* que va más allá de los límites establecidos por la API de Twitter [https://github.com/twintproject](https://github.com/twintproject)
-
-
-[^2]: Esta sección está basada en el desarrollo de Garrik Aden-Buie [https://github.com/gadenbuie/tweets-of-2019](https://github.com/gadenbuie/tweets-of-2019)
-
-[^3]: Este apartado está inspirado en el trabajo de Roeder y otros [-@oliver_roeder_worst_2017] sobre el comportamiento de los usuarios con las publicaciones de políticos de EE.UU. en *FiveThirtyEight* y el posterior análisis sobre el caso argentino de Galup y Pilorget [-@pilorget_grieta_2018]. 
-
-## *Shiny* App
-[http://tuitometro.mentacomunicacion.com.ar/](http://tuitometro.mentacomunicacion.com.ar/)
 
 ## Referencias
+
+
