@@ -1,30 +1,15 @@
 # latinr2020
 
-**DRAFT**
-abstract #TuitómetroNaiconal
+## **PONENCIAS ENVIADAS**
+
+[#TuitómetroNaiconal](https://github.com/TuQmano/latinr2020/blob/master/rmd/tuitometro/tuitometro.pdf)
+
+
+[MinaR los discuRsos pResidenciales](https://github.com/TuQmano/latinr2020/rmd/discursos/discursos_presidenciales.pdf)
 
 ---
+### Libería `latinr`
 
-**TO DO LIST**
+* `latinr::latinr_article()` para generar un arhcivo `.Rmd` con template de ponencia (genera un `.pdf` vía `latex / pandoc`)
 
-### 1. Incorporar todas las referencias
-
-a. retweet
-
-b. shiny
-
-c. FiveThirtyEight
-
-d. network analysis
-
-e. métricas de twitter básicas. 
-
-### 2. Buscar mejor manera de ilustrar la app en el abstract (tenemos dos páginas). 
-
-Una composición de imganes (patchwork?) de network + ternario? 
-
-### 3 Template + submit
-
-El artículo lo empecé con el paquete `latinr`que proveé el template. Pero también el método para hacer el *submit* anonomizado cuando corresponda al gestor de contenidos. Tener en cuenta para cuando haya que avanzar con ese proceso. 
-
- 
+* `latinr::latinr_submit()` procesa el envío
