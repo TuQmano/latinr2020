@@ -2,7 +2,7 @@
 type: oral   #oral, poster, table
 language: spanish
 title: "MinaR los discuRsos pResidenciales"
-topics: [1, 6,10]
+topics: [1, 10]
 # Para la lista de tópicos usá latinr::latinr_topics()
 authors:
   - first_name: Juan Pablo
@@ -17,7 +17,7 @@ authors:
     email: chiga1226@gmail.com
     country: ar
     affiliation: ["menta Comunicación"]
-    corresponding: false
+    corresponding: true
 presenter: 1  # sólo un autor puede estar como speaker
 keywords: 
   - "discurso"
@@ -26,11 +26,9 @@ keywords:
 bibliography: latinr_bibliography.bib
 biblio-style: apalike-es   
 output: 
-    latinr::latinr_article:
-      keep_tex: false
-params: 
-  check_is_error: FALSE
-  submission: FALSE
+    latinr::latinr_article: 
+      keep_tex: FALSE
+      submission: TRUE
 ---
 
 
@@ -78,7 +76,7 @@ Sigle y Robinson [-@Silge2016] definen entonces a los *datos de texto ordenados*
 
 Inspirados en un trabajo del equipo de datos de la Universidad de Berkeley (California)[^3] calculamos la frecuencia con la que los presidentes utilizaron determinadas palabras relacionadas con un tópico específico, en este caso etiquetadas como *Política*.  
 
-[^3]: *The Language of Data: Analyzing the State of the Union* [-@berkeley].
+[^3]: *The Language of Data: Analyzing the State of the Union* [@berkeley].
 
 ```{r parrallel_discursos, echo=FALSE, fig.align='center', out.width="100%"}
 knitr::include_graphics("../../img/parallel_dot2.png")
