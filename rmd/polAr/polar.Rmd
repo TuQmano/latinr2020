@@ -1,0 +1,85 @@
+---
+type: oral   #oral, poster, table
+language: spanish
+title: "{polAr} Política Argentina Usando R"
+topics: [3]
+# Para la lista de tópicos usá latinr::latinr_topics()
+authors:
+  - first_name: Juan Pablo
+    last_name: Ruiz Nicolini
+    email: juan.ruiznicolini@mail.utdt.edu
+    country: ar  # lista en latinr::latinr_countries()
+    affiliation: ["Universidad Torcuato Di Tella"]
+    url: "http://tuqmanor.netlify.com/"  # Optional 
+    corresponding: true
+presenter: 1  # sólo un autor puede estar como speaker
+keywords: 
+  - "r package"
+  - "elecciones"
+  - "política"
+bibliography: latinr_bibliography.bib
+biblio-style: apalike-es   
+output: 
+    latinr::latinr_article: 
+      keep_tex: FALSE
+      submission: TRUE
+---
+
+
+```{r submission-checks, echo=FALSE, warning=TRUE}
+# Runs some basic checks in metadata. To disable, set check_is_error to FALSE
+latinr::latinr_checks(rmarkdown::metadata, params$check_is_error)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Abstract 
+
+\CRANpkg{polAr} es un paquete pensado para para facilitar el flujo de trabajo y el acceso a datos político-electorales de Argentina. Entre otros, está inspirado en los paquetes \CRANpkg{eph} [@eph] -que facilita el acceso a datos de la _Encuesta Permanente de Hogares_ del _Instituo Nacional de Estadísticas y Censos_ de Argentina- y \CRANpkg{esaps} [@esaps] -que proveé métodos para el cómputo de indicadores de sistemas de partidos y  electorales.
+
+### 1.Datos 
+
+Aunque \CRANpkg{polAr} no es un paquete de datos, una de sus principales funciones es facilitar el acceso a los mismos haciendo llamadas a un repositorio independiente. El código y diseño de \CRANpkg{eph} fueron centrales para desarrollar esta parte. El primer paso consistió en el pre procesamiento de las bases de datos originales[^1] y el diseño de una estructura de archivos que nos permitiera hacer esas llamadas. `show_available_elections()` es una función que devuelve una tabla que funciona como índice de elecciones disponibles. El mismo está basado en el nombre de archivos de esa estructura, y son a la vez los parámetros necesarios para descargar una elección: 
+
+
+[^1]: La fuente original de datos para resultados de elecciones nacionales (2003-2017) provienen del _Atlas Electoral_ de @andytow. Los datos de las elecciones de 2019 tienen una estructura diferente de las de años anteriores y fueron reconstruidos de unos paquetes especificos desarrollados por @pmoracho para cada turno: _P.A.S.O._ y _Generales_. Más detalles disponibles en el repositorio de datos: https://github.com/electorArg/PolAr_Data/. 
+
+```{r get_data}
+library(polAr)
+
+tucuman2019Dip <- get_election_data(district = "tucuman",
+                  category = "dip",
+                  round = "paso",
+                  year = 2019)
+
+```
+
+La idea general es disponibilizar la información lo más desagregada y limpia posible para usar del modo más conveniente por cada usuarie. Es por ello que se agregan opciones para obtener la *data* _cruda_ (usando el parámetro `raw = TRUE`) o  descargarla en formato _ancho_ (con parámetro `long = FALSE`). Además de funciones auxiliares como `make_long()` para pasar a formato _tidy_ un `data.frame` _ancho_  o `get_names()` que permite agregar los nombres a los _id_ de listas presentes en la *data.* 
+
+
+### 2.Indicadores
+
+Otra alternativa, siguiendo las ideas propuestas en \CRANpkg{esaps}, es poder calcular indicadores a partir de la información obtenida. En esta versión es posible computar _Competitividad_ o el _Número Efectivo de Partidos_, de este modo:
+
+
+```{r compute}
+
+compute_nep(tucuman2019Dip)
+
+```
+
+
+### 3.Visualización
+
+Por último, con esta misma *data* podemos hacer uso de funciones que permiten visualizar rápidamente los datos como tablas (`tabulate_results`), mapas (`map_results`) o  gráficos (`plot_results`): 
+```{r plot}
+
+plot_results(tucuman2019Dip)
+
+```
+
+## Referencias
