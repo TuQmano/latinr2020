@@ -10,7 +10,7 @@ authors:
     email: juan.ruiznicolini@mail.utdt.edu
     country: ar  # lista en latinr::latinr_countries()
     affiliation: ["Universidad Torcuato Di Tella"]
-    url: "tuqmano.github.io"  # Optional 
+    url: "tuqmanoR.netlify.com/"  # Optional 
     corresponding: true
   - first_name: Camila 
     last_name: Higa
@@ -18,7 +18,14 @@ authors:
     country: ar
     affiliation: ["menta Comunicación"]
     corresponding: true
-presenter: 1  # sólo un autor puede estar como speaker
+  - first_name: Lucas  
+    last_name: Enrich
+    email:  lucas.a.enrich@gmail.com
+    country: ar
+    affiliation: ['Universidad Nacional de La Matanza']
+    corresponding: true
+    url: "https://lucasenrich.netlify.app/"
+presenter: 3  # sólo un autor puede estar como speaker
 keywords: 
   - "discurso"
   - "text minning"

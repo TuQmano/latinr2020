@@ -2,10 +2,15 @@
 
 ## **PONENCIAS ENVIADAS**
 
-[#TuitómetroNaiconal](https://github.com/TuQmano/latinr2020/blob/master/rmd/tuitometro/tuitometro.pdf)
+[#TuitómetroNaiconal](https://github.com/TuQmano/latinr2020/blob/master/rmd/tuitometro/tuitometro.pdf). Aceptada con modificaciones. Posponer reenvio para 2021.  
 
 
-[MinaR los discuRsos pResidenciales](https://github.com/TuQmano/latinr2020/blob/master/rmd/discursos/discursos_presidenciales.pdf)
+[MinaR los discuRsos pResidenciales](https://github.com/TuQmano/latinr2020/blob/master/rmd/discursos/discursos_presidenciales.pdf). Aceptada para sesión oral. 
+
+
+[{polAr}](https://github.com/TuQmano/latinr2020/blob/master/rmd/polAr/polar.pdf). Aceptada para sesión relámpago. 
+
+
 
 ---
 ### Libería `latinr`
