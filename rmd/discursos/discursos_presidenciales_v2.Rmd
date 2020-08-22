@@ -84,8 +84,8 @@ Sigle y Robinson [-@Silge2016] definen entonces a los *datos de texto ordenados*
 
 Mediante la combinación de las técnicas de _TF-IDF_ y _Principal Component Analysis (PCA)_ es posible embeber númericamente los discurso mediante el uso de palabras ponderado por el largo del discurso y así visualizar los presidentes de mayor y menor variabilidad discursiva, en comparación con los promedios de los demás.
 
-```{r echo=FALSE, fig.align='center', out.width="100%"}
-knitr::include_graphics("../../img/trayectoria.png")
+```{r echo=FALSE, fig.align='center', out.width="100%",out.height='27%'}
+knitr::include_graphics("../../img/t2.png")
 ```
 
 Las limitaciones de técnicas basadas en la frecuencia de las palabras independientemente del orden (como son _Bag of Words_ y _TF-IDF_), estan vinculadas, por un lado, con el vocabulario y la semantica, por el otro. Así, para trabajar mejor con textos históricos (el más antiguo en este caso tiene 166 años), es recomendable usar tecnicas que hagan uso del contexto como puede ser _Doc2Vec_.
