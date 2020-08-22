@@ -52,10 +52,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Abstract 
 
-El primero de marzo de cada año las cámaras de Diputados y Senadores de la Nación Argentina se reúnen en asamblea para dar comienzo al año legislativo. Cada año el presidente de turno encabeza  dicho acto con un discurso[^1]. Éstos suelen girar en torno a los ejes de gobierno o promesas y objetivos del año. Es notorio que estos mensajes tiene un estilo y contenido marcado por quien ejerce el gobierno. En este trabajo partimos de una gran cantidad de texto contenido en cada uno de los discursos presidenciales desde el primero en 1854 por Justo Jose De Urquiza hasta el último en 2020 por Alberto Fernandez
+El primero de marzo de cada año las cámaras de Diputados y Senadores de la Nación Argentina se reúnen en asamblea para dar comienzo al año legislativo. Cada año el presidente de turno encabeza dicho acto con un discurso[^1]. Éstos suelen girar en torno a los ejes de gobierno o promesas y objetivos del año. Es notorio que estos mensajes tiene un estilo y contenido marcado por quien ejerce el gobierno. En este trabajo partimos de una gran cantidad de texto contenido en cada uno de los discursos presidenciales desde el primero en 1854 por Justo Jose De Urquiza hasta el último en 2020 por Alberto Fernandez
 
 
-[^1]: La fuente original de todos los discursos puede consultarse en línea en [https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html](https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html). Los mismos fueron posteriormente digitalizados mediante proceso de OCR y se encuentran disponibles en el paquete {polAr}
+[^1]: La fuente original de todos los discursos puede consultarse en línea en [https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html](https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html). Los mismos fueron posteriormente digitalizados mediante proceso de OCR y se encuentran disponibles para descarga desde `R` el paquete `{polAr}`[@polAr]. 
 
 
 Hacer uso de la *minería de texto* de los discursos de los presidentes como estrategia de investigación es de utilidad para un rápido y eficiente análisis exploratorio del gran volúmen de información contenida en los mismos. Dentro del ecosistema de `R` este campo ha ido creciendo sostenidamente. Liberias como \CRANpkg{tm} y \CRANpkg{topicmodels} son herramientas poderosas para el procesamiento, manipulación y modelado de la información contenida en el texto. Siguiendo la filosofía de \CRANpkg{tidyverse}  Sigle y Robinson [-@Silge2016] desarrollaron \CRANpkg{tidytext}, que hace mucho más facil una primera introducción a esta técnica de investigación y su integración con otras como \CRANpkg{ggplot2} para la visualización. 
@@ -78,27 +78,16 @@ Sigle y Robinson [-@Silge2016] definen entonces a los *datos de texto ordenados*
 
 [^2]: Traducción propia de *The tidy text format* [@Silge2016].
 
-3. Trabajamos con \CRANpkg{dplyr} para calcular frecuencias de palabras y \CRANpkg{tidytext} para calcular palabras de mayor importancia comparada entre discursos (*tf_idf*). Por último \CRANpkg{ggplot2} (y extensiones como \CRANpkg{patchwork} y \CRANpkg{ggforce}) para las visualizaciones. 
+3. Trabajamos con \CRANpkg{dplyr} para calcular frecuencias de palabras y \CRANpkg{tidytext} para calcular palabras de mayor importancia comparada entre discursos (*tf_idf*) y \CRANpkg{ggplot2} para las visualizaciones. 
 
-### Ejemplo 1: Evolución de el número de palabras
+### Ejemplo: Trayectoria en el discurso
 
-Es posible, por ejemplo, visualizar fácilmente la cantidad de palabras por discurso:
-
-```{r echo=FALSE, fig.align='center', out.width="100%"}
-knitr::include_graphics("../../img/cantidad_palabras.jpg")
-```
-
-
-### Ejemplo 2: Trayectoria en el discurso
-
-Mediante la combinación de las técnicas de TF-IDF y Principal Component Analysis (PCA) es posible embeber númericamente los discurso mediante el uso de palabras ponderado por el largo del discurso y así visualizar los presidentes de mayor y menor variabilidad discursiva, en comparación con los promedios de los demás.
+Mediante la combinación de las técnicas de _TF-IDF_ y _Principal Component Analysis (PCA)_ es posible embeber númericamente los discurso mediante el uso de palabras ponderado por el largo del discurso y así visualizar los presidentes de mayor y menor variabilidad discursiva, en comparación con los promedios de los demás.
 
 ```{r echo=FALSE, fig.align='center', out.width="100%"}
 knitr::include_graphics("../../img/trayectoria.png")
 ```
 
-Las limitaciones de técnicas basadas en la frecuencia de las palabras independientemente del orden (como son Bag of Words y TF-IDF), estan vinculadas, por un lado, con el vocabulario y la semantica, por el otro. Así, para trabajar mejor con textos históricos (el más antiguo en este caso tiene 166 años), es recomendable usar tecnicas que hagan uso del contexto como puede ser Doc2Vec
+Las limitaciones de técnicas basadas en la frecuencia de las palabras independientemente del orden (como son _Bag of Words_ y _TF-IDF_), estan vinculadas, por un lado, con el vocabulario y la semantica, por el otro. Así, para trabajar mejor con textos históricos (el más antiguo en este caso tiene 166 años), es recomendable usar tecnicas que hagan uso del contexto como puede ser _Doc2Vec_.
 
 ## Referencias
-
-
