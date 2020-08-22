@@ -1,0 +1,104 @@
+---
+type: oral   #oral, poster, table
+language: spanish
+title: "MinaR los discuRsos pResidenciales"
+topics: [1, 10]
+# Para la lista de tópicos usá latinr::latinr_topics()
+authors:
+  - first_name: Juan Pablo
+    last_name: Ruiz Nicolini
+    email: juan.ruiznicolini@mail.utdt.edu
+    country: ar  # lista en latinr::latinr_countries()
+    affiliation: ["Universidad Torcuato Di Tella"]
+    url: "tuqmanoR.netlify.com/"  # Optional 
+    corresponding: true
+  - first_name: Camila 
+    last_name: Higa
+    email: chiga1226@gmail.com
+    country: ar
+    affiliation: ["menta Comunicación"]
+    corresponding: true
+  - first_name: Lucas  
+    last_name: Enrich
+    email:  lucas.a.enrich@gmail.com
+    country: ar
+    affiliation: ['Universidad Nacional de La Matanza']
+    corresponding: true
+    url: "https://lucasenrich.netlify.app/"
+presenter: 3  # sólo un autor puede estar como speaker
+keywords: 
+  - "discurso"
+  - "text minning"
+  - "política"
+bibliography: latinr_bibliography.bib
+biblio-style: apalike-es   
+output: 
+    latinr::latinr_article: 
+      keep_tex: FALSE
+      submission: FALSE
+---
+
+
+```{r submission-checks, echo=FALSE, warning=TRUE}
+# Runs some basic checks in metadata. To disable, set check_is_error to FALSE
+latinr::latinr_checks(rmarkdown::metadata, params$check_is_error)
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Abstract 
+
+El primero de marzo de cada año las cámaras de Diputados y Senadores de la Nación Argentina se reúnen en asamblea para dar comienzo al año legislativo. Cada año el presidente de turno encabeza  dicho acto con un discurso[^1]. Éstos suelen girar en torno a los ejes de gobierno o promesas y objetivos del año. Es notorio que estos mensajes tiene un estilo y contenido marcado por quien ejerce el gobierno. En este trabajo partimos de una gran cantidad de texto contenido en cada uno de los discursos presidenciales desde el primero en 1854 por Justo Jose De Urquiza hasta el último en 2020 por Alberto Fernandez
+
+
+[^1]: La fuente original de todos los discursos puede consultarse en línea en [https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html](https://www.hcdn.gob.ar/secparl/dgral_info_parlamentaria/dip/documentos/mensajes_presidenciales.html). Los mismos fueron posteriormente digitalizados mediante proceso de OCR y se encuentran disponibles en el paquete {polAr}
+
+
+Hacer uso de la *minería de texto* de los discursos de los presidentes como estrategia de investigación es de utilidad para un rápido y eficiente análisis exploratorio del gran volúmen de información contenida en los mismos. Dentro del ecosistema de `R` este campo ha ido creciendo sostenidamente. Liberias como \CRANpkg{tm} y \CRANpkg{topicmodels} son herramientas poderosas para el procesamiento, manipulación y modelado de la información contenida en el texto. Siguiendo la filosofía de \CRANpkg{tidyverse}  Sigle y Robinson [-@Silge2016] desarrollaron \CRANpkg{tidytext}, que hace mucho más facil una primera introducción a esta técnica de investigación y su integración con otras como \CRANpkg{ggplot2} para la visualización. 
+
+Un flujo de trabajo como el descripto más arriba puede ilustrarse siguiendo el esquema propuesto por Silge y Robinson [-@silge_text_2020]:
+
+```{r diagrama, echo=FALSE, fig.align='center', out.width="80%"}
+knitr::include_graphics("../../img/diagrama.png")
+```
+
+1. Se encuentran digitalizados los $114$ discursos emitidos por los $31$ presidentes que dieron lugar a la apertura de las sesiones legislativas. Debe mencionarse que no hay un discurso por año debido, principalmente, a las interrupciones institucionales, cuando el congreso no sesionó. Entre todos suman alrededor de $1.358.792$ palabras con un promedio de $11.919$ y picos mínimo de $99$ (Miguel Juarez Celman $1890$) y máximo de $43.135$ (Ramon Castillo en $1942$). 
+
+2. Con esa información construimos una única base de datos siguiendo el principo *datos de texto ordenados* (*tidy text*) propuesto por Sigle y Robinson [-@Silge2016] como extensión de los *datos ordenados* (*tidy*) de Wickham [-@JSSv059i10]: 
+
+ * Cada variable debe tener su propia columna.
+ * Cada observación debe tener su propia fila.
+ * Cada valor debe tener su propia celda.
+
+Sigle y Robinson [-@Silge2016] definen entonces a los *datos de texto ordenados* cuando están en una tabla compuesta por "un *token* por fila". *Un token es una unidad de texto significativa, como una palabra* (o un *bigrama*)*, que estamos interesados en usar para el análisis, y la tokenización es el proceso de dividir el texto en tokens*[^2]. 
+
+[^2]: Traducción propia de *The tidy text format* [@Silge2016].
+
+3. Trabajamos con \CRANpkg{dplyr} para calcular frecuencias de palabras y \CRANpkg{tidytext} para calcular palabras de mayor importancia comparada entre discursos (*tf_idf*). Por último \CRANpkg{ggplot2} (y extensiones como \CRANpkg{patchwork} y \CRANpkg{ggforce}) para las visualizaciones. 
+
+### Ejemplo 1: Evolución de el número de palabras
+
+Es posible, por ejemplo, visualizar fácilmente la cantidad de palabras por discurso:
+
+```{r echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("../../img/cantidad_palabras.jpg")
+```
+
+
+### Ejemplo 2: Trayectoria en el discurso
+
+Mediante la combinación de las técnicas de TF-IDF y Principal Component Analysis (PCA) es posible embeber númericamente los discurso mediante el uso de palabras ponderado por el largo del discurso y así visualizar los presidentes de mayor y menor variabilidad discursiva, en comparación con los promedios de los demás.
+
+```{r echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("../../img/trayectoria.png")
+```
+
+Las limitaciones de técnicas basadas en la frecuencia de las palabras independientemente del orden (como son Bag of Words y TF-IDF), estan vinculadas, por un lado, con el vocabulario y la semantica, por el otro. Así, para trabajar mejor con textos históricos (el más antiguo en este caso tiene 166 años), es recomendable usar tecnicas que hagan uso del contexto como puede ser Doc2Vec
+
+## Referencias
+
+
