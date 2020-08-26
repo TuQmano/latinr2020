@@ -66,7 +66,7 @@ Un flujo de trabajo como el descripto anteriormente puede ilustrarse siguiendo e
 knitr::include_graphics("../../img/diagrama.png")
 ```
 
-1. Se encuentran digitalizados los $114$ discursos emitidos por los $31$ presidentes que dieron lugar a la apertura de las sesiones legislativas. Debe mencionarse que no hay un discurso por año debido, principalmente, a las interrupciones institucionales cuando el congreso no sesionó. Entre todos suman alrededor de $1.358.792$ palabras con un promedio de $11.919$ y picos mínimo de $99$ (Miguel Juarez Celman $1890$) y máximo de $43.135$ (Ramon Castillo en $1942$). 
+1. Se encuentran digitalizados los $114$ discursos emitidos por los $31$ presidentes que dieron lugar a la apertura de las sesiones legislativas. Debe mencionarse que no hay un discurso por año debido, principalmente, a las interrupciones institucionales cuando el congreso no sesionó. Entre todos suman alrededor de $1.358.792$ palabras con un promedio de $11.919$ y picos mínimo de $258$ (Hipolito Yrigoyen $1917$) y máximo de $44.415$ (Ramon Castillo en $1942$). 
 
 2. Con esa información construimos una única base de datos siguiendo el principo *datos de texto ordenados* (*tidy text*) propuesto por Silge y Robinson [-@Silge2016] como extensión de los *datos ordenados* (*tidy*) de Wickham [-@JSSv059i10]: 
 
