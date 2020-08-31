@@ -13,7 +13,10 @@
 
 
 ---
-### Libería `latinr`
+###  `latinr` 
+
+Las ponencias fueron editadas y enviadas a través de [{latinR}](https://github.com/LatinR/latinr), un paquete desarrollado por [Elio Campitelli](https://twitter.com/d_olivaw). 
+
 
 * `latinr::latinr_article()` para generar un arhcivo `.Rmd` con template de ponencia (genera un `.pdf` vía `latex / pandoc`)
 
