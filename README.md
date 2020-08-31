@@ -2,7 +2,7 @@
 
 ## **PONENCIAS ENVIADAS**
 
-[#TuitómetroNaiconal](https://github.com/TuQmano/latinr2020/blob/master/rmd/tuitometro/tuitometro.pdf). Aceptada con modificaciones. Posponer reenvio para 2021.  
+[#TuitómetroNaiconal](https://github.com/TuQmano/latinr2020/blob/master/rmd/tuitometro/tuitometro.pdf). Aceptada para sesión relampago.   
 
 
 [MinaR los discuRsos pResidenciales](https://github.com/TuQmano/latinr2020/blob/master/rmd/discursos/discursos_presidenciales.pdf). Aceptada para sesión oral. 
