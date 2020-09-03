@@ -1,0 +1,163 @@
+---
+title: "{polAr}"
+subtitle: "LatinR 2020"
+author: "Juan Pablo Ruiz Nicolini"
+institute: "Universidad Torcuato Di Tella"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  xaringan::moon_reader:
+    seal: false
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      countdown: 60000
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+exclude: true
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "webcam"))
+xaringanExtra::use_webcam(width = 900, height = 400)
+```
+
+
+
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#0b9be3",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono")
+)
+
+```
+
+---
+
+class: center
+
+background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
+background-position: 8% 40%
+background-size: 20%
+
+
+# Herramientas y Datos para el Análisis Político de Argentina
+
+## LatinR 2020  
+
+#### JUAN PABLO RUIZ NICOLINI
+
+#### Universidad Torcuato Di Tella
+
+##### [`r icon::fa("globe")`](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+
+##### [`r icon::fa("twitter")`](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
+
+##### [`r icon::fa("github")`](https://github.com/tuqmano) [TuQmano](https://github.com/tuqmano)
+
+---
+
+background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
+background-size: 90px
+background-position: 90% 5%
+
+
+#  
+
+#### Juan Pablo Ruiz Nicolini | **@TuQamno**
+
+### Análisis de Datos Políicos de Argentina
+
+Paquete desarrollado enteramente en **R** que facilita el acceso y proveé herramientas para el análisis de datos políticos de Argentina:
+
+--
+
+(i) resultados electorales;
+
+--
+
+(ii) información para la georeferencia de datos; 
+
+--
+
+(iii) votaciones legislativas;
+
+--
+
+**(iv) discursos presidenciales**. 
+
+---
+background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
+background-size: 100px
+background-position: 90% 5%
+
+# DISCURSOS
+
+```{r, warning=F, message=F}
+library(polAr)
+
+show_available_speech(viewer = FALSE)
+
+```
+
+
+
+---
+background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
+background-size: 100px
+background-position: 90% 5%
+
+# ELECCIONES
+
+```{r}
+library(polAr)
+
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019) %>% 
+  plot_results()
+
+```
+
+
+
+---
+background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
+background-size: 100px
+background-position: 90% 5%
+
+# LEGISLATIVAS
+
+```{r}
+library(polAr)
+
+  plot_bill(id = "3507-Diputados") 
+
+```
+
+
+
+
+---
+class: inverse, middle, center
+
+# Using xaringan
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
