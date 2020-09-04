@@ -76,7 +76,7 @@ background-size: 20%
 
 ### Análisis de Datos Políicos de Argentina
 
-Paquete desarrollado enteramente en **R** que facilita el acceso y provee herramientas para el análisis de datos políticos de Argentina:
+`{polAr}` provee herramientas para el análisis y facilita el acceso a datos políticos de Argentina:
 
 --
 
@@ -97,7 +97,12 @@ Paquete desarrollado enteramente en **R** que facilita el acceso y provee herram
 ---
 
 
-# DISCURSOS
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+
+### Análisis de Datos Políicos de Argentina
+
+
+### DISCURSOS
 
 ```{r, warning=F, message=F}
 library(polAr)
@@ -110,7 +115,12 @@ show_available_speech(viewer = FALSE)
 
 ---
 
-# ELECCIONES
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+
+### Análisis de Datos Políicos de Argentina
+
+
+## ELECCIONES
 
 ```{r election_plot}
 library(polAr)
@@ -125,7 +135,12 @@ get_election_data(district = "caba", category = "dip",
 
 ---
 
-# LEGISLATIVAS
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+
+### Análisis de Datos Políicos de Argentina
+
+
+## LEGISLATIVAS
 
 ```{r bill_ggparliament}
 library(polAr)
@@ -135,19 +150,3 @@ library(polAr)
 ```
 
 
-
-
----
-class: inverse, middle, center
-
-# Using xaringan
-
----
-
-class: center, middle
-
-# Thanks!
-
-Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
-
-The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
