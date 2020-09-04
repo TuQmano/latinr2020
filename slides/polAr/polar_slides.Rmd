@@ -16,20 +16,12 @@ output:
       countIncrementalSlides: false
 ---
 
-exclude: true
+layout:true
+
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
-
-
-```{r xaringanExtra, echo=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "webcam"))
-xaringanExtra::use_webcam(width = 900, height = 400)
-```
-
-
-
 
 ```{r xaringan-themer, warning=FALSE, include=FALSE}
 library(xaringanthemer)
@@ -39,12 +31,24 @@ style_mono_accent(
   text_font_google   = google_font("Montserrat", "300", "300i"),
   code_font_google   = google_font("Fira Mono")
 )
-
 ```
+
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view"))
+xaringanExtra::use_webcam(width = 900, height = 400)
+```
+
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo("https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png", width = "100px")
+```
+
+
+
 
 ---
 
-class: center
+class: center, hide_logo
 
 background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
 background-position: 8% 40%
@@ -67,18 +71,12 @@ background-size: 20%
 
 ---
 
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 90px
-background-position: 90% 5%
 
-
-#  
-
-#### Juan Pablo Ruiz Nicolini | **@TuQamno**
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
 
 ### Análisis de Datos Políicos de Argentina
 
-Paquete desarrollado enteramente en **R** que facilita el acceso y proveé herramientas para el análisis de datos políticos de Argentina:
+Paquete desarrollado enteramente en **R** que facilita el acceso y provee herramientas para el análisis de datos políticos de Argentina:
 
 --
 
@@ -94,12 +92,10 @@ Paquete desarrollado enteramente en **R** que facilita el acceso y proveé herra
 
 --
 
-**(iv) discursos presidenciales**. 
+(iv) discursos presidenciales 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
+
 
 # DISCURSOS
 
@@ -113,13 +109,10 @@ show_available_speech(viewer = FALSE)
 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
 
 # ELECCIONES
 
-```{r}
+```{r election_plot}
 library(polAr)
 
 get_election_data(district = "caba", category = "dip",
@@ -131,13 +124,10 @@ get_election_data(district = "caba", category = "dip",
 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
 
 # LEGISLATIVAS
 
-```{r}
+```{r bill_ggparliament}
 library(polAr)
 
   plot_bill(id = "3507-Diputados") 

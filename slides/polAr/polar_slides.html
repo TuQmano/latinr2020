@@ -6,10 +6,8 @@
     <meta name="author" content="Juan Pablo Ruiz Nicolini" />
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-webcam/webcam.js"></script>
-    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
+    <script id="xaringanExtra-webcam-options" type="application/json">{"width":"900","height":"400","margin":"1em"}</script>
     <link href="libs/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -17,7 +15,7 @@
     <textarea id="source">
 
 
-exclude: true
+layout:true
 
 
 
@@ -25,13 +23,43 @@ exclude: true
 
 
 
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 100px;
+height: 128px;
+z-index: 0;
+background-image: url(https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(el => { el.innerHTML += '<div class="xaringan-extra-logo"></div>' })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
 
 
 
 
 ---
 
-class: center
+class: center, hide_logo
 
 background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
 background-position: 8% 40%
@@ -54,18 +82,12 @@ background-size: 20%
 
 ---
 
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 90px
-background-position: 90% 5%
 
-
-#  
-
-#### Juan Pablo Ruiz Nicolini | **@TuQamno**
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
 
 ### Análisis de Datos Políicos de Argentina
 
-Paquete desarrollado enteramente en **R** que facilita el acceso y proveé herramientas para el análisis de datos políticos de Argentina:
+Paquete desarrollado enteramente en **R** que facilita el acceso y provee herramientas para el análisis de datos políticos de Argentina:
 
 --
 
@@ -81,12 +103,10 @@ Paquete desarrollado enteramente en **R** que facilita el acceso y proveé herra
 
 --
 
-**(iv) discursos presidenciales**. 
+(iv) discursos presidenciales 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
+
 
 # DISCURSOS
 
@@ -117,9 +137,6 @@ show_available_speech(viewer = FALSE)
 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
 
 # ELECCIONES
 
@@ -132,14 +149,11 @@ get_election_data(district = "caba", category = "dip",
   plot_results()
 ```
 
-![](polar_slides_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](polar_slides_files/figure-html/election_plot-1.png)&lt;!-- --&gt;
 
 
 
 ---
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-size: 100px
-background-position: 90% 5%
 
 # LEGISLATIVAS
 
@@ -150,7 +164,7 @@ library(polAr)
   plot_bill(id = "3507-Diputados") 
 ```
 
-![](polar_slides_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](polar_slides_files/figure-html/bill_ggparliament-1.png)&lt;!-- --&gt;
 
 
 
