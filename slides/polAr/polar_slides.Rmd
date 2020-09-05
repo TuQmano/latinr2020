@@ -21,22 +21,26 @@ layout:true
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.retina = 3,
+                      out.width = 300, ### control plot size
+                      ccache = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+
+xaringanExtra::use_xaringan_extra(include = c("panelset", "tile_view", "webcam", "editable"))
+
+library(polAr)
+library(tidyverse)
+
 ```
 
-```{r xaringan-themer, warning=FALSE, include=FALSE}
-library(xaringanthemer)
-style_mono_accent(
-  base_color = "#0b9be3",
-  header_font_google = google_font("Josefin Sans"),
-  text_font_google   = google_font("Montserrat", "300", "300i"),
-  code_font_google   = google_font("Fira Mono")
-)
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
 ```
 
-```{r xaringanExtra, echo=FALSE}
-xaringanExtra::use_xaringan_extra(c("tile_view"))
-xaringanExtra::use_webcam(width = 900, height = 400)
-```
 
 
 ```{r xaringan-logo, echo=FALSE}
@@ -84,7 +88,7 @@ background-size: 20%
 
 --
 
-(ii) información para la georeferencia de datos; 
+(ii) datos para análisis georeferenciados; 
 
 --
 
@@ -102,36 +106,62 @@ background-size: 20%
 ### Análisis de Datos Políicos de Argentina
 
 
+
+
 ### DISCURSOS
 
-```{r, warning=F, message=F}
-library(polAr)
+.panelset[
 
-show_available_speech(viewer = FALSE)
+.panel[.panel-name[Explorar]
 
+
+```{r}
+show_available_speech()
 ```
 
+]
+
+.panel[.panel-name[Descargar]
+
+.pull-left[
+```{r speech_tidy}
+get_speech(year = 1946) 
+```
+]
+
+.pull-right[
+```{r speech_raw}
+get_speech(year = 1946, 
+           raw = T) %>% #<<
+  pull(discurso)
+```
+]
 
 
----
+]
 
-#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+.panel[.panel-name[Visualizar]
 
-### Análisis de Datos Políicos de Argentina
+.pull-left[
 
+```{r, eval=F}
+get_speech(year = 1946) %>% 
+plot_speech() #<<
+```
+]
 
-### ELECCIONES
+.pull-right[
 
-```{r election_plot}
-library(polAr)
+```{r word_cloud, echo=F}
 
-get_election_data(district = "caba", category = "dip",
-                  round = "gral", year =  2019) %>% 
-  plot_results()
+knitr::include_graphics(path = "polar_slides_files/img-manual/peron_1946.png")
 
 ```
+]
+]
 
 
+]
 
 ---
 
@@ -142,11 +172,136 @@ get_election_data(district = "caba", category = "dip",
 
 ### LEGISLATIVAS
 
-```{r bill_ggparliament}
-library(polAr)
 
+
+.panelset[
+
+.panel[.panel-name[Explorar]
+
+```{r bill_explore}
+show_available_bills(viewer = F)  
+```
+
+]
+
+.panel[.panel-name[Descargar]
+
+
+```{r bill_votes}
+get_bill_votes(bill = "3507-Diputados") 
+```
+
+]
+
+
+.panel[.panel-name[Visualizar]
+
+Grafica el acumulado de opciones de una votación
+
+.pull-left[
+```{r bill_ggparliament_code, eval=F}
   plot_bill(id = "3507-Diputados") 
+```
+]
+
+.pull.right[
+
+```{r bill_ggparliament, echo=FALSE}
+  plot_bill(id = "3507-Diputados") 
+```
+
+
+]
+]
+]
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+
+### Análisis de Datos Políicos de Argentina
+
+
+### ELECCIONES
+
+
+.panelset[
+.panel[.panel-name[Explorar]
+
+
+```{r election_show}
+show_available_elections() 
+```
+
+]
+
+.panel[.panel-name[Descargar]
+
+```{r election_get}
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019) 
+```
+
+]
+
+
+
+.panel[.panel-name[Graficar]
+
+
+```{r election_plot}
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019) %>% 
+  plot_results() #<<
 
 ```
+
+]
+
+.panel[.panel-name[Mapear]
+
+
+```{r election_map}
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019,
+                  level = "departamento") %>%  #<<
+  map_results() #<<
+
+```
+
+]
+
+.panel[.panel-name[Tabular]
+
+
+```{r election_table}
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019) %>% 
+  tabulate_results() #<<
+
+```
+
+]
+
+.panel[.panel-name[Computar]
+
+
+```{r election_seats}
+get_election_data(district = "caba", category = "dip",
+                  round = "gral", year =  2019) %>% 
+  compute_seats() #<<
+
+```
+
+
+#### Otros cálculos en la familia de funciones  `compute_*`: 
+
+ `compute_nep`, `compute_competitiveness`, `compute_disproportion`, `compute_concentration`
+
+]
+
+]
+
+
 
 
