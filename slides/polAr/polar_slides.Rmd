@@ -62,7 +62,7 @@ background-size: 30%
 
 #### Universidad Torcuato Di Tella
 
-##### [`r icon::fa("globe")`](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+##### [`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.com](https://www.tuqmano.com/) 
 
 ##### [`r icon::fa("twitter")`](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
 
@@ -81,10 +81,11 @@ background-size: 20%
 
 
 .pull-left[
+
+
 ```{r bsas, echo=F, fig.align='center'}
 knitr::include_graphics("polar_slides_files/img-manual/bsas.PNG")
 ```
-**geofacet_Arg** 
 
 * Generación de grillas de Argentina y las 24 provincias. 
 * 2020: la mayoría de ellas fueron incorporadas en repositorio oficial de [geofacet](https://hafen.github.io/geofacet/)
@@ -96,20 +97,19 @@ knitr::include_graphics("polar_slides_files/img-manual/bsas.PNG")
 
 
 .pull-right[
+
+`r emojifont::emoji("package")`**geofaceteAR (2020)**
+
+[https://github.com/electorArg/geofaceteAR](https://github.com/electorArg/geofaceteAR)
+
 ```{r geofaceteAr,echo=F, fig.align='center'}
 
   knitr::include_graphics("polar_slides_files/img-manual/geofacetear.PNG")
 
 ```
 
-`r emojifont::emoji("package")`**geofaceteAR (2020)**
-[https://github.com/electorArg/geofaceteAR](https://github.com/electorArg/geofaceteAR)
 
 ]
-
-
-
-
 
 ---
 class: hide_logo
@@ -126,6 +126,9 @@ background-size: 20%
 knitr::include_graphics("polar_slides_files/img-manual/ie.PNG")
 ```
 **Inteligencia Electoral**
+
+Presentación | _Shinny_ app
+
 ]
 
 --
@@ -138,7 +141,10 @@ knitr::include_graphics("polar_slides_files/img-manual/ie.PNG")
   knitr::include_graphics("polar_slides_files/img-manual/hw.PNG")
 
 ```
-**Package Development Tutorial**
+**Package Development**
+
+Tutorial
+
 ]
 
 
@@ -152,7 +158,7 @@ background-position: 90% 10%
 background-size: 20%
 
 # .can-edit[Montevideo (2020)]
-## .can-edit[Uruguay] 
+
 
 ```{r polar_logo, echo = FALSE, fig.align='center'}
  knitr::include_graphics("https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png")
@@ -170,19 +176,36 @@ background-size: 20%
 
 --
 
-`r emojifont::emoji("envelope")` resultados electorales;
+`r emojifont::emoji("loudspeaker")` discursos presidenciales 
 
 --
 
-`r emojifont::emoji("earth_americas")` datos para análisis georeferenciados; 
-
---
 
 `r emojifont::emoji("raising_hand")`votaciones legislativas;
 
 --
 
-`r emojifont::emoji("loudspeaker")` discursos presidenciales 
+
+`r emojifont::emoji("earth_americas")` datos para análisis georeferenciados; 
+
+--
+
+`r emojifont::emoji("envelope")` resultados electorales;
+
+--
+
+#### Tipos de tareas
+
+
+`r emojifont::emoji("mag")` EXPLORAR: funciones `show_*()` 
+
+--
+
+`r emojifont::emoji("inbox_tray")` DESCARGAR: funciones `get_*()`
+
+--
+
+`r emojifont::emoji("bar_chart")` VISUALIZAR: funciones `plot_*()`, `map_*()`,`tabulate_*()`
 
 ---
 
@@ -192,11 +215,11 @@ background-size: 20%
 ### Análisis de Datos Políicos de Argentina
 
 
-### DISCURSOS
+### `r emojifont::emoji("loudspeaker")` DISCURSOS
 
 .panelset[
 
-.panel[.panel-name[Explorar]
+.panel[.panel-name[`r emojifont::emoji("mag")`Explorar]
 
 
 ```{r}
@@ -205,7 +228,7 @@ show_available_speech()
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[`r emojifont::emoji("inbox_tray")`Descargar]
 
 .pull-left[
 ```{r speech_tidy}
@@ -224,7 +247,7 @@ get_speech(year = 1946,
 
 ]
 
-.panel[.panel-name[Visualizar]
+.panel[.panel-name[`r emojifont::emoji("bar_chart")`Visualizar]
 
 .pull-left[
 
@@ -254,13 +277,12 @@ knitr::include_graphics(path = "polar_slides_files/img-manual/peron_1946.png")
 ### Análisis de Datos Políicos de Argentina
 
 
-### LEGISLATIVAS
-
+### `r emojifont::emoji("raising_hand")` LEGISLATIVAS
 
 
 .panelset[
 
-.panel[.panel-name[Explorar]
+.panel[.panel-name[`r emojifont::emoji("mag")`Explorar]
 
 ```{r bill_explore}
 show_available_bills(viewer = F)  
@@ -268,7 +290,7 @@ show_available_bills(viewer = F)
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[`r emojifont::emoji("inbox_tray")`Descargar]
 
 
 ```{r bill_votes}
@@ -278,7 +300,7 @@ get_bill_votes(bill = "3507-Diputados")
 ]
 
 
-.panel[.panel-name[Visualizar]
+.panel[.panel-name[`r emojifont::emoji("bar_chart")`Visualizar]
 
 Grafica el acumulado de opciones de una votación
 
@@ -306,11 +328,74 @@ Grafica el acumulado de opciones de una votación
 ### Análisis de Datos Políicos de Argentina
 
 
-### ELECCIONES
+### `r emojifont::emoji("earth_americas")` GEO
 
 
 .panelset[
-.panel[.panel-name[Explorar]
+
+.panel[.panel-name[`r emojifont::emoji("mag")`Explorar]
+
+```{r codes_explore}
+show_arg_codes(viewer = F)  # level = "departamento disponible
+```
+
+]
+
+.panel[.panel-name[`r emojifont::emoji("inbox_tray")`Descargar Grilla]
+
+.pull-left[
+```{r grid code, eval = F}
+get_grid(district = "TUCUMAN") %>% #<< 
+  geofacet::grid_preview() 
+```
+]
+
+.pull-right[
+```{r grid, echo = F}
+get_grid(district = "TUCUMAN") %>% 
+  geofacet::grid_preview()
+```
+]
+
+]
+
+.panel[.panel-name[`r emojifont::emoji("inbox_tray")`Descargar geometry]
+
+.pull-left[
+
+```{r geo , eval = F}
+get_geo(geo =  "TUCUMAN") %>%  #<<
+  ggplot2::ggplot() +
+  ggplot2::geom_sf()
+```
+]
+
+.pull-right[
+
+```{r geo plot, echo = F}
+get_geo(geo =  "TUCUMAN") %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(aes (label = coddepto))
+
+```
+]
+
+]
+
+]
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+### Análisis de Datos Políicos de Argentina
+
+
+### `r emojifont::emoji("envelope")` ELECCIONES
+
+
+.panelset[
+.panel[.panel-name[`r emojifont::emoji("mag")`Explorar]
 
 
 ```{r election_show}
@@ -319,7 +404,7 @@ show_available_elections()
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[`r emojifont::emoji("inbox_tray")`Descargar]
 
 ```{r election_get}
 get_election_data(district = "caba", category = "dip",
@@ -330,7 +415,7 @@ get_election_data(district = "caba", category = "dip",
 
 
 
-.panel[.panel-name[Graficar]
+.panel[.panel-name[`r emojifont::emoji("bar_chart")`Graficar]
 
 
 ```{r election_plot}
@@ -342,7 +427,7 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Mapear]
+.panel[.panel-name[`r emojifont::emoji("bar_chart")`Mapear]
 
 
 ```{r election_map}
@@ -355,7 +440,7 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Tabular]
+.panel[.panel-name[`r emojifont::emoji("bar_chart")`Tabular]
 
 
 ```{r election_table}
@@ -367,7 +452,24 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Computar]
+
+
+]
+
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+### Análisis de Datos Políicos de Argentina
+
+
+### `r emojifont::emoji("envelope")` ELECCIONES
+
+
+.panelset[
+
+.panel[.panel-name[`r emojifont::emoji("computer")`Computar]
 
 
 ```{r election_seats}
@@ -386,6 +488,10 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
+
+
+
+
 ---
 
 #### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
@@ -397,7 +503,7 @@ get_election_data(district = "caba", category = "dip",
 ```
 
 
-###  [`r icon::fa("twitter")`](https://twitter.com/pol_Ar_bot) [https://twitter.com/pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
+###  [`r icon::fa("twitter")`](https://twitter.com/pol_Ar_bot) [twitter.com/pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
 
 ---
 
@@ -411,7 +517,7 @@ get_election_data(district = "caba", category = "dip",
 .pull-left[
 
 ### `{polAr}`
-#### [`r icon::fa("globe")`](https://electorarg.github.io/polAr/) [https://electorarg.github.io/polAr/](https://electorarg.github.io/polAr/) 
+#### [`r icon::fa("globe")`](https://electorarg.github.io/polAr/) [electorarg.github.io/polAr/](https://electorarg.github.io/polAr/) 
 #### [`r icon::fa("twitter")`](https://twitter.com/pol_Ar_bot)  [pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
 #### [`r icon::fa("github")`](https://github.com/electorArg/polAr/) [electorArg/polAr/](https://github.com/electorArg/polAr/)
 ]
@@ -420,7 +526,7 @@ get_election_data(district = "caba", category = "dip",
 .pull-right[
 
 ### `TuQmano`
-#### [`r icon::fa("globe")`](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+#### [`r icon::fa("globe")`](https://www.tuqmano.com/) [tuqmano.com](https://www.tuqmano.com/) 
 #### [`r icon::fa("twitter")`](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
 #### [`r icon::fa("github")`](https://github.com/tuqmano) [TuQmano](https://github.com/tuqmano)
 

@@ -8,7 +8,7 @@
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xaa2e858ec414d92b4b1b4f172964e1b","expires":14}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xee34167b2d4423d89b9eb34451661ea","expires":14}</script>
     <script src="libs/himalaya/himalaya.js"></script>
     <script src="libs/js-cookie/js.cookie.js"></script>
     <link href="libs/editable/editable.css" rel="stylesheet" />
@@ -81,7 +81,7 @@ background-size: 30%
 
 #### Universidad Torcuato Di Tella
 
-##### [<i class="fas  fa-globe "></i>](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+##### [<i class="fas  fa-globe "></i>](https://www.tuqmano.com/) [tuqmano.com](https://www.tuqmano.com/) 
 
 ##### [<i class="fab  fa-twitter "></i>](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
 
@@ -100,8 +100,9 @@ background-size: 20%
 
 
 .pull-left[
+
+
 &lt;img src="polar_slides_files/img-manual/bsas.PNG" width="300" style="display: block; margin: auto;" /&gt;
-**geofacet_Arg** 
 
 * Generación de grillas de Argentina y las 24 provincias. 
 * 2020: la mayoría de ellas fueron incorporadas en repositorio oficial de [geofacet](https://hafen.github.io/geofacet/)
@@ -113,16 +114,15 @@ background-size: 20%
 
 
 .pull-right[
-&lt;img src="polar_slides_files/img-manual/geofacetear.PNG" width="300" style="display: block; margin: auto;" /&gt;
 
 📦**geofaceteAR (2020)**
+
 [https://github.com/electorArg/geofaceteAR](https://github.com/electorArg/geofaceteAR)
 
+&lt;img src="polar_slides_files/img-manual/geofacetear.PNG" width="300" style="display: block; margin: auto;" /&gt;
+
+
 ]
-
-
-
-
 
 ---
 class: hide_logo
@@ -137,6 +137,9 @@ background-size: 20%
 .pull-left[
 &lt;img src="polar_slides_files/img-manual/ie.PNG" width="300" /&gt;
 **Inteligencia Electoral**
+
+Presentación | _Shinny_ app
+
 ]
 
 --
@@ -145,7 +148,10 @@ background-size: 20%
 
 
 &lt;img src="polar_slides_files/img-manual/hw.PNG" width="300" /&gt;
-**Package Development Tutorial**
+**Package Development**
+
+Tutorial
+
 ]
 
 
@@ -159,7 +165,7 @@ background-position: 90% 10%
 background-size: 20%
 
 # .can-edit[Montevideo (2020)]
-## .can-edit[Uruguay] 
+
 
 &lt;img src="https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png" width="300" style="display: block; margin: auto;" /&gt;
 
@@ -175,19 +181,36 @@ background-size: 20%
 
 --
 
-✉️ resultados electorales;
+📢 discursos presidenciales 
 
 --
 
-🌎 datos para análisis georeferenciados; 
-
---
 
 🙋votaciones legislativas;
 
 --
 
-📢 discursos presidenciales 
+
+🌎 datos para análisis georeferenciados; 
+
+--
+
+✉️ resultados electorales;
+
+--
+
+#### Tipos de tareas
+
+
+🔍 EXPLORAR: funciones `show_*()` 
+
+--
+
+📥 DESCARGAR: funciones `get_*()`
+
+--
+
+📊 VISUALIZAR: funciones `plot_*()`, `map_*()`,`tabulate_*()`
 
 ---
 
@@ -197,11 +220,11 @@ background-size: 20%
 ### Análisis de Datos Políicos de Argentina
 
 
-### DISCURSOS
+### 📢 DISCURSOS
 
 .panelset[
 
-.panel[.panel-name[Explorar]
+.panel[.panel-name[🔍Explorar]
 
 
 
@@ -225,7 +248,7 @@ show_available_speech()
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[📥Descargar]
 
 .pull-left[
 
@@ -261,7 +284,7 @@ get_speech(year = 1946,
 
 ]
 
-.panel[.panel-name[Visualizar]
+.panel[.panel-name[📊Visualizar]
 
 .pull-left[
 
@@ -288,13 +311,12 @@ get_speech(year = 1946) %&gt;%
 ### Análisis de Datos Políicos de Argentina
 
 
-### LEGISLATIVAS
-
+### 🙋 LEGISLATIVAS
 
 
 .panelset[
 
-.panel[.panel-name[Explorar]
+.panel[.panel-name[🔍Explorar]
 
 
 ```r
@@ -317,7 +339,7 @@ show_available_bills(viewer = F)
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[📥Descargar]
 
 
 
@@ -342,7 +364,7 @@ get_bill_votes(bill = "3507-Diputados")
 ]
 
 
-.panel[.panel-name[Visualizar]
+.panel[.panel-name[📊Visualizar]
 
 Grafica el acumulado de opciones de una votación
 
@@ -369,11 +391,83 @@ Grafica el acumulado de opciones de una votación
 ### Análisis de Datos Políicos de Argentina
 
 
-### ELECCIONES
+### 🌎 GEO
 
 
 .panelset[
-.panel[.panel-name[Explorar]
+
+.panel[.panel-name[🔍Explorar]
+
+
+```r
+show_arg_codes(viewer = F)  # level = "departamento disponible
+## # A tibble: 26 x 5
+##    id           codprov codprov_censo codprov_iso name_iso                      
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;                         
+##  1 ARGENTINA    " "     " "           AR          Argentina                     
+##  2 CABA         "01"    "02"          AR-C        Ciudad Autónoma de Buenos Air~
+##  3 BUENOS AIRES "02"    "06"          AR-B        Buenos Aires                  
+##  4 CATAMARCA    "03"    "10"          AR-K        Catamarca                     
+##  5 CORDOBA      "04"    "14"          AR-X        Córdoba                       
+##  6 CORRIENTES   "05"    "18"          AR-W        Corrientes                    
+##  7 CHACO        "06"    "22"          AR-H        Chaco                         
+##  8 CHUBUT       "07"    "26"          AR-U        Chubut                        
+##  9 ENTRE RIOS   "08"    "30"          AR-E        Entre Ríos                    
+## 10 FORMOSA      "09"    "34"          AR-P        Formosa                       
+## # ... with 16 more rows
+```
+
+]
+
+.panel[.panel-name[📥Descargar Grilla]
+
+.pull-left[
+
+```r
+*get_grid(district = "TUCUMAN") %&gt;%
+  geofacet::grid_preview() 
+```
+]
+
+.pull-right[
+&lt;img src="polar_slides_files/figure-html/grid-1.png" width="300" /&gt;
+]
+
+]
+
+.panel[.panel-name[📥Descargar geometry]
+
+.pull-left[
+
+
+```r
+*get_geo(geo =  "TUCUMAN") %&gt;%
+  ggplot2::ggplot() +
+  ggplot2::geom_sf()
+```
+]
+
+.pull-right[
+
+&lt;img src="polar_slides_files/figure-html/geo plot-1.png" width="300" /&gt;
+]
+
+]
+
+]
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+### Análisis de Datos Políicos de Argentina
+
+
+### ✉️ ELECCIONES
+
+
+.panelset[
+.panel[.panel-name[🔍Explorar]
 
 
 
@@ -397,7 +491,7 @@ show_available_elections()
 
 ]
 
-.panel[.panel-name[Descargar]
+.panel[.panel-name[📥Descargar]
 
 
 ```r
@@ -421,7 +515,7 @@ get_election_data(district = "caba", category = "dip",
 
 
 
-.panel[.panel-name[Graficar]
+.panel[.panel-name[📊Graficar]
 
 
 
@@ -435,7 +529,7 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Mapear]
+.panel[.panel-name[📊Mapear]
 
 
 
@@ -450,7 +544,7 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Tabular]
+.panel[.panel-name[📊Tabular]
 
 
 
@@ -464,7 +558,7 @@ get_election_data(district = "caba", category = "dip",
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tgihphybte .gt_table {
+#dawvfidfum .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -489,7 +583,7 @@ get_election_data(district = "caba", category = "dip",
   border-left-color: #D3D3D3;
 }
 
-#tgihphybte .gt_heading {
+#dawvfidfum .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -501,7 +595,7 @@ get_election_data(district = "caba", category = "dip",
   border-right-color: #D3D3D3;
 }
 
-#tgihphybte .gt_title {
+#dawvfidfum .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -511,7 +605,7 @@ get_election_data(district = "caba", category = "dip",
   border-bottom-width: 0;
 }
 
-#tgihphybte .gt_subtitle {
+#dawvfidfum .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -521,13 +615,13 @@ get_election_data(district = "caba", category = "dip",
   border-top-width: 0;
 }
 
-#tgihphybte .gt_bottom_border {
+#dawvfidfum .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tgihphybte .gt_col_headings {
+#dawvfidfum .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -542,7 +636,7 @@ get_election_data(district = "caba", category = "dip",
   border-right-color: #D3D3D3;
 }
 
-#tgihphybte .gt_col_heading {
+#dawvfidfum .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -562,7 +656,7 @@ get_election_data(district = "caba", category = "dip",
   overflow-x: hidden;
 }
 
-#tgihphybte .gt_column_spanner_outer {
+#dawvfidfum .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -574,15 +668,15 @@ get_election_data(district = "caba", category = "dip",
   padding-right: 4px;
 }
 
-#tgihphybte .gt_column_spanner_outer:first-child {
+#dawvfidfum .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tgihphybte .gt_column_spanner_outer:last-child {
+#dawvfidfum .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tgihphybte .gt_column_spanner {
+#dawvfidfum .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -594,7 +688,7 @@ get_election_data(district = "caba", category = "dip",
   width: 100%;
 }
 
-#tgihphybte .gt_group_heading {
+#dawvfidfum .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -616,7 +710,7 @@ get_election_data(district = "caba", category = "dip",
   vertical-align: middle;
 }
 
-#tgihphybte .gt_empty_group_heading {
+#dawvfidfum .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -631,15 +725,15 @@ get_election_data(district = "caba", category = "dip",
   vertical-align: middle;
 }
 
-#tgihphybte .gt_from_md > :first-child {
+#dawvfidfum .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tgihphybte .gt_from_md > :last-child {
+#dawvfidfum .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tgihphybte .gt_row {
+#dawvfidfum .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -658,7 +752,7 @@ get_election_data(district = "caba", category = "dip",
   overflow-x: hidden;
 }
 
-#tgihphybte .gt_stub {
+#dawvfidfum .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -670,7 +764,7 @@ get_election_data(district = "caba", category = "dip",
   padding-left: 12px;
 }
 
-#tgihphybte .gt_summary_row {
+#dawvfidfum .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -680,7 +774,7 @@ get_election_data(district = "caba", category = "dip",
   padding-right: 5px;
 }
 
-#tgihphybte .gt_first_summary_row {
+#dawvfidfum .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -690,7 +784,7 @@ get_election_data(district = "caba", category = "dip",
   border-top-color: #D3D3D3;
 }
 
-#tgihphybte .gt_grand_summary_row {
+#dawvfidfum .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -700,7 +794,7 @@ get_election_data(district = "caba", category = "dip",
   padding-right: 5px;
 }
 
-#tgihphybte .gt_first_grand_summary_row {
+#dawvfidfum .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -710,11 +804,11 @@ get_election_data(district = "caba", category = "dip",
   border-top-color: #D3D3D3;
 }
 
-#tgihphybte .gt_striped {
+#dawvfidfum .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tgihphybte .gt_table_body {
+#dawvfidfum .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -723,7 +817,7 @@ get_election_data(district = "caba", category = "dip",
   border-bottom-color: #D3D3D3;
 }
 
-#tgihphybte .gt_footnotes {
+#dawvfidfum .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -737,13 +831,13 @@ get_election_data(district = "caba", category = "dip",
   border-right-color: #D3D3D3;
 }
 
-#tgihphybte .gt_footnote {
+#dawvfidfum .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tgihphybte .gt_sourcenotes {
+#dawvfidfum .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -757,46 +851,46 @@ get_election_data(district = "caba", category = "dip",
   border-right-color: #D3D3D3;
 }
 
-#tgihphybte .gt_sourcenote {
+#dawvfidfum .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tgihphybte .gt_left {
+#dawvfidfum .gt_left {
   text-align: left;
 }
 
-#tgihphybte .gt_center {
+#dawvfidfum .gt_center {
   text-align: center;
 }
 
-#tgihphybte .gt_right {
+#dawvfidfum .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tgihphybte .gt_font_normal {
+#dawvfidfum .gt_font_normal {
   font-weight: normal;
 }
 
-#tgihphybte .gt_font_bold {
+#dawvfidfum .gt_font_bold {
   font-weight: bold;
 }
 
-#tgihphybte .gt_font_italic {
+#dawvfidfum .gt_font_italic {
   font-style: italic;
 }
 
-#tgihphybte .gt_super {
+#dawvfidfum .gt_super {
   font-size: 65%;
 }
 
-#tgihphybte .gt_footnote_marks {
+#dawvfidfum .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="tgihphybte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="dawvfidfum" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>CABA - 2019</th>
@@ -855,7 +949,24 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
-.panel[.panel-name[Computar]
+
+
+]
+
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+### Análisis de Datos Políicos de Argentina
+
+
+### ✉️ ELECCIONES
+
+
+.panelset[
+
+.panel[.panel-name[💻Computar]
 
 
 
@@ -880,6 +991,10 @@ get_election_data(district = "caba", category = "dip",
 
 ]
 
+
+
+
+
 ---
 
 #### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
@@ -889,7 +1004,7 @@ get_election_data(district = "caba", category = "dip",
 &lt;img src="polar_slides_files/img-manual/bot.PNG" width="50%" style="display: block; margin: auto;" /&gt;
 
 
-###  [<i class="fab  fa-twitter "></i>](https://twitter.com/pol_Ar_bot) [https://twitter.com/pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
+###  [<i class="fab  fa-twitter "></i>](https://twitter.com/pol_Ar_bot) [twitter.com/pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
 
 ---
 
@@ -903,7 +1018,7 @@ get_election_data(district = "caba", category = "dip",
 .pull-left[
 
 ### `{polAr}`
-#### [<i class="fas  fa-globe "></i>](https://electorarg.github.io/polAr/) [https://electorarg.github.io/polAr/](https://electorarg.github.io/polAr/) 
+#### [<i class="fas  fa-globe "></i>](https://electorarg.github.io/polAr/) [electorarg.github.io/polAr/](https://electorarg.github.io/polAr/) 
 #### [<i class="fab  fa-twitter "></i>](https://twitter.com/pol_Ar_bot)  [pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
 #### [<i class="fab  fa-github "></i>](https://github.com/electorArg/polAr/) [electorArg/polAr/](https://github.com/electorArg/polAr/)
 ]
@@ -912,7 +1027,7 @@ get_election_data(district = "caba", category = "dip",
 .pull-right[
 
 ### `TuQmano`
-#### [<i class="fas  fa-globe "></i>](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+#### [<i class="fas  fa-globe "></i>](https://www.tuqmano.com/) [tuqmano.com](https://www.tuqmano.com/) 
 #### [<i class="fab  fa-twitter "></i>](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
 #### [<i class="fab  fa-github "></i>](https://github.com/tuqmano) [TuQmano](https://github.com/tuqmano)
 
