@@ -47,21 +47,16 @@ xaringanExtra::use_panelset()
 xaringanExtra::use_logo("https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png", width = "100px")
 ```
 
-
-
-
 ---
 
 class: center, hide_logo
 
-background-image: url(https://github.com/electorArg/polAr/raw/master/hex/hex-polAr.png?raw=true)
-background-position: 8% 40%
-background-size: 20%
+background-image: url(https://raw.githubusercontent.com/LatinR/identidad-visual-latinR/master/LatinR_hex_violeta.png)
+background-position: 50% 100%
+background-size: 30%
 
 
 # Herramientas y Datos para el Análisis Político de Argentina
-
-## LatinR 2020  
 
 #### JUAN PABLO RUIZ NICOLINI
 
@@ -74,38 +69,127 @@ background-size: 20%
 ##### [`r icon::fa("github")`](https://github.com/tuqmano) [TuQmano](https://github.com/tuqmano)
 
 ---
+class: hide_logo
+
+background-image: url(https://raw.githubusercontent.com/LatinR/identidad-visual-latinR/master/LatinR_hex_violeta.png)
+background-position: 90% 10%
+background-size: 20%
+
+# Buenos Aires (2018)
+## Argentina 
 
 
-#### Juan Pablo Ruiz Nicolini | **@TuQmano**
 
-### Análisis de Datos Políicos de Argentina
+.pull-left[
+```{r bsas, echo=F, fig.align='center'}
+knitr::include_graphics("polar_slides_files/img-manual/bsas.PNG")
+```
+**geofacet_Arg** 
 
-`{polAr}` provee herramientas para el análisis y facilita el acceso a datos políticos de Argentina:
+* Generación de grillas de Argentina y las 24 provincias. 
+* 2020: la mayoría de ellas fueron incorporadas en repositorio oficial de [geofacet](https://hafen.github.io/geofacet/)
+
+
+]
 
 --
 
-(i) resultados electorales;
+
+.pull-right[
+```{r geofaceteAr,echo=F, fig.align='center'}
+
+  knitr::include_graphics("polar_slides_files/img-manual/geofacetear.PNG")
+
+```
+
+`r emojifont::emoji("package")`**geofaceteAR (2020)**
+[https://github.com/electorArg/geofaceteAR](https://github.com/electorArg/geofaceteAR)
+
+]
+
+
+
+
+
+---
+class: hide_logo
+
+background-image: url(https://raw.githubusercontent.com/LatinR/identidad-visual-latinR/master/LatinR_hex_violeta.png)
+background-position: 90% 10%
+background-size: 20%
+
+# Santiago (2019)
+## Chile 
+
+.pull-left[
+```{r chile, echo=F}
+knitr::include_graphics("polar_slides_files/img-manual/ie.PNG")
+```
+**Inteligencia Electoral**
+]
 
 --
 
-(ii) datos para análisis georeferenciados; 
+.pull-right[
 
---
 
-(iii) votaciones legislativas;
+```{r hw,echo=F}
 
---
+  knitr::include_graphics("polar_slides_files/img-manual/hw.PNG")
 
-(iv) discursos presidenciales 
+```
+**Package Development Tutorial**
+]
+
+
+
+
+---
+class: hide_logo
+
+background-image: url(https://raw.githubusercontent.com/LatinR/identidad-visual-latinR/master/LatinR_hex_violeta.png)
+background-position: 90% 10%
+background-size: 20%
+
+# .can-edit[Montevideo (2020)]
+## .can-edit[Uruguay] 
+
+```{r polar_logo, echo = FALSE, fig.align='center'}
+ knitr::include_graphics("https://raw.githubusercontent.com/electorArg/polAr/master/hex/hex-polAr.png")
+```
+
 
 ---
 
 
-#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
 
 ### Análisis de Datos Políicos de Argentina
 
+#### `r emojifont::emoji("package")``{polAr}`  facilita el acceso a datos políticos de Argentina y provee herramientas para el análisis explortario, descarga, cálculos y visualización de la información.
 
+--
+
+`r emojifont::emoji("envelope")` resultados electorales;
+
+--
+
+`r emojifont::emoji("earth_americas")` datos para análisis georeferenciados; 
+
+--
+
+`r emojifont::emoji("raising_hand")`votaciones legislativas;
+
+--
+
+`r emojifont::emoji("loudspeaker")` discursos presidenciales 
+
+---
+
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020  
+
+### Análisis de Datos Políicos de Argentina
 
 
 ### DISCURSOS
@@ -165,7 +249,7 @@ knitr::include_graphics(path = "polar_slides_files/img-manual/peron_1946.png")
 
 ---
 
-#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
 
 ### Análisis de Datos Políicos de Argentina
 
@@ -217,7 +301,7 @@ Grafica el acumulado de opciones de una votación
 
 ---
 
-#### Juan Pablo Ruiz Nicolini | **@TuQmano**
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
 
 ### Análisis de Datos Políicos de Argentina
 
@@ -296,11 +380,56 @@ get_election_data(district = "caba", category = "dip",
 
 #### Otros cálculos en la familia de funciones  `compute_*`: 
 
- `compute_nep`, `compute_competitiveness`, `compute_disproportion`, `compute_concentration`
+ `compute_nep()`, `compute_competitiveness()`, `compute_disproportion()`, `compute_concentration()`
 
 ]
 
 ]
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+## Robot electoral en Twitter
+
+```{r polar_bot, echo = FALSE, fig.align='center', out.width="50%"}
+ knitr::include_graphics("polar_slides_files/img-manual/bot.PNG")
+```
+
+
+###  [`r icon::fa("twitter")`](https://twitter.com/pol_Ar_bot) [https://twitter.com/pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
+
+---
+
+#### Juan Pablo Ruiz Nicolini | **@TuQmano**  | LatinR 2020 
+
+### Análisis de Datos Políicos de Argentina
+
+# GRACIAS!!!
+
+
+.pull-left[
+
+### `{polAr}`
+#### [`r icon::fa("globe")`](https://electorarg.github.io/polAr/) [https://electorarg.github.io/polAr/](https://electorarg.github.io/polAr/) 
+#### [`r icon::fa("twitter")`](https://twitter.com/pol_Ar_bot)  [pol_Ar_bot](https://twitter.com/pol_Ar_bot) 
+#### [`r icon::fa("github")`](https://github.com/electorArg/polAr/) [electorArg/polAr/](https://github.com/electorArg/polAr/)
+]
+
+
+.pull-right[
+
+### `TuQmano`
+#### [`r icon::fa("globe")`](http://tuqmanor.netlify.com/) [tuqmanor.netlify.com](http://tuqmanor.netlify.com/) 
+#### [`r icon::fa("twitter")`](https://twitter.com/TuQmano)  [TuQmano](https://twitter.com/TuQmano) 
+#### [`r icon::fa("github")`](https://github.com/tuqmano) [TuQmano](https://github.com/tuqmano)
+
+
+]
+
+
+
+
 
 
 
