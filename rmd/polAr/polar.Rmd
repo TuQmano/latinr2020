@@ -10,7 +10,7 @@ authors:
     email: juan.ruiznicolini@mail.utdt.edu
     country: ar  # lista en latinr::latinr_countries()
     affiliation: ["Universidad Torcuato Di Tella"]
-    url: "http://tuqmanor.netlify.com/"  # Optional 
+    url: "http://tuqmanor.com/"  # Optional 
     corresponding: true
 presenter: 1  # sólo un autor puede estar como speaker
 keywords: 
@@ -43,7 +43,7 @@ library(polAr)
 
 ## Abstract 
 
-\CRANpkg{polAr} es un paquete pensado para para facilitar el flujo de trabajo y el acceso a datos políticos de Argentina: en la versión en desarrollo ya se puede trabajar con resultados electorales, votaciones legislativas o discursos presidenciales. Entre otros, está inspirado en los paquetes \CRANpkg{eph} [@eph] -que facilita el acceso a datos de la _Encuesta Permanente de Hogares_ del _Instituo Nacional de Estadísticas y Censos_ de Argentina- y \CRANpkg{esaps} [@esaps] -que proveé métodos para el cómputo de indicadores de sistemas de partidos y  electorales.
+\CRANpkg{polAr} es un paquete pensado para para facilitar el flujo de trabajo y el acceso a datos políticos de Argentina. El mismo permite trabajar con resultados electorales, votaciones legislativas o discursos presidenciales. Entre otros, está inspirado en los paquetes \CRANpkg{eph} [@eph] -que facilita el acceso a datos de la _Encuesta Permanente de Hogares_ del _Instituo Nacional de Estadísticas y Censos_ de Argentina- y \CRANpkg{esaps} [@esaps] -que proveé métodos para el cómputo de indicadores de sistemas de partidos y  electorales.
 
 ### 1.Datos 
 
@@ -51,7 +51,7 @@ Aunque \CRANpkg{polAr} no es un paquete de datos, una de sus principales funcion
 
 Flujos similares se diseñaron para cada tópico: con `show_available_bills` y `get_bill_votes` para datos legislativos; y `show_available_speech` y `get_speech` para discursos presidenciales. 
 
-[^1]: Mientras que la versión de **CRAN** solamente avanzó en información y datos electorales, la versión en desarrollo incorpora otros flujos de trabajo: (i) capas de información _GIS_; (ii) discursos presidenciales para el análisis cuantitativo de texto y (iii) registros de votaciones legislativas https://electorarg.github.io/polAr/news/index.html#polar-0-1-3-5-unreleased 
+[^1]: El paquete contiene cuatro flujos de trabajos: (i) capas de información geográfica y codificaciones; (ii) discursos presidenciales para el análisis cuantitativo de texto ; (iii) registros de votaciones legislativas y (iv) datos de resultados electorales.
 
 [^2]: La fuente original de datos para resultados de elecciones nacionales (2003-2017) provienen del _Atlas Electoral_ de @andytow. Los datos de las elecciones de 2019 tienen una estructura diferente de las de años anteriores y fueron reconstruidos de unos paquetes especificos desarrollados por @pmoracho para cada turno: _P.A.S.O._ y _Generales_. Más detalles disponibles en el repositorio de datos: https://github.com/electorArg/PolAr_Data/. 
 
@@ -60,7 +60,7 @@ La idea general es disponibilizar la información lo más desagregada y limpia p
 
 ### 2.Indicadores
 
-Otra alternativa es poder calcular indicadores a partir de la información obtenida. En la versión de **CRAN**, por ejemplo, es posible computar _Competitividad_ (`compute_competitiveness`) o el _Número Efectivo de Partidos_ (`compute_nep`) a partir de datos de restulados electorales. La versión en desarrollo incluye además otros cálculos posibles como el reparto de escaños (`compute_seats`), el nivel de _Concentración_ (`compute_concentration`), o de _Desproporción_ electoral (`compute_disproportion`). 
+Otra posibilidad es la de calcular indicadores a partir de la información obtenida. Por ejemplo, es posible computar la _Competitividad_  electoral (`compute_competitiveness`); el _Número Efectivo de Partidos_ (`compute_nep`); el reparto de escaños (`compute_seats`); el nivel de _Concentración_ (`compute_concentration`) y la _Desproporción_ electoral (`compute_disproportion`). 
 
 ### 3.Visualización
 
@@ -68,15 +68,15 @@ Por último, también podemos hacer uso de funciones que permiten visualizar rá
 
 \newpage
 
-```{r plot, message=FALSE, warning=FALSE}
+```{r plot, message=FALSE, warning=FALSE, fig.align='right'}
 library(polAr)
 get_election_data(district = "arg", category = "presi",
-                  round = "gral", year = 2019) %>%  map_results()
+                  round = "gral", year = 2019) %>%  
+  map_results()
 
 ```
 
-
-
+Agradecimientos: \CRANpkg{polAr} [@polAr] contó con la colaboración de Camila Higa, Lucas Enrich e Iván Lewin.  
 
 
 
